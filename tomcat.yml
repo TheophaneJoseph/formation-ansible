@@ -1,0 +1,18 @@
+---
+tasks:
+  - name: Ensure tomcat9 is installed
+    package:
+      name: tomcat9
+      state: present
+
+  - name: Check if tomcat9 is running
+    service:
+      name: tomcat9
+      state: started
+      enabled: true
+
+  - name: Getting the java app
+    get_url:
+      url: https://tomcat.apache.org/tomcat-9.0-doc/appdev/sample/sample.war
+      dest: /var/lib/tomcat9/webapps
+    
