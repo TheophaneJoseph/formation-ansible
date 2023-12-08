@@ -5,4 +5,4 @@
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
-      loop: "{{ packages.split('\n') }}"
+      loop: "{{ packages | split('\n') }}"
