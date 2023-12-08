@@ -3,5 +3,6 @@
   tasks:
     - name: Installation de plusieurs paquets
       ansible.builtin.package:
-        name: "{{ packages }}"
+        name: "{{ item }}"
         state: present
+      loop: "{{ packages | split("\n") }}"
