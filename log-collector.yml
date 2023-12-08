@@ -21,8 +21,8 @@
       
     - name: Deploy config files for filebeat
       ansible.builtin.template:
-        src: {{ item.source }}
-        dest: {{ item.destination }}
+        src: "{{ item.source }}"
+        dest: "{{ item.destination }}"
       loop:
         - source: templates/filebeat.yml
           destination: /etc/filebeat/filebeat.yml
