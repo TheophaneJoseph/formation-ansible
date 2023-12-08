@@ -3,8 +3,8 @@
     enabled: true
 
     # Set which input to use between udp (default), tcp or file.
-     var.input: file
+    var.input: file
 
     # Set paths for the log files when file input is used.
-     var.paths:
-       - /var/log/tomcat9/*.log
+    var.paths:
+      - /var/log/tomcat9/*.log
