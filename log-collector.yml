@@ -28,6 +28,14 @@
           destination: /etc/filebeat/filebeat.yml
         - source: templates/system.yml
           destination: /etc/filebeat/modules.d/system.yml
+        - source: templates/auditd.yml
+          destination: /etc/filebeat/modules.d/auditd.yml
+        - source: templates/apache.yml
+          destination: /etc/filebeat/modules.d/apache.yml
+        - source: templates/nginx.yml
+          destination: /etc/filebeat/modules.d/nginx.yml
+        - source: templates/tomcat.yml
+          destination: /etc/filebeat/modules.d/tomcat.yml
       notify: Restart filebeat
 
   handlers:
