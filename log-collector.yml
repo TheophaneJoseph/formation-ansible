@@ -2,4 +2,36 @@
 - hosts: all
   tasks:
     - name: Rename hostname
+      ansible.builtin.hostname:
+        name: theophane
+
+    - name: Download filebeat
+      ansible.builtin.get_url:
+        url: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.11.2-amd64.deb
+        dest: /home/vagrant/
+
+    - name: Install deb package
+      ansible.builtin.apt:
+        deb: /home/vagrant/filebeat-8.11.2-amd64.deb
+
+    - name: Ensure filebeat is started
+      ansible.builtin.service:
+        name: filebeat
+        state: started
       
+    - name: Deploy config files for filebeat
+      ansible.builtin.template:
+        src: {{ item.source }}
+        dest: {{ item.destination }}
+      loop:
+        - source: templates/filebeat.yml
+          destination: /etc/filebeat/filebeat.yml
+        - source: templates/system.yml
+          destination: /etc/filebeat/modules.d/system.yml
+      notify: Restart filebeat
+
+  handlers:
+    - name: Restart filebeat
+      ansible.builtin.service:
+        name: filebeat
+        state: restarted
