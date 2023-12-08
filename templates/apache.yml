@@ -1,8 +1,8 @@
 - module: apache
   # Access logs
   access:
-    enabled: false
+    enabled: true
     
   # Error logs
   error:
-    enabled: false
+    enabled: true
